@@ -235,6 +235,7 @@ usage:  c2t      [-vh?]
         -p pipe to stdout
         -q parameters and data only (for use with custom client)
         -r #, where # overrides the sample rate (e.g. -r 48000)
+           Negates -a, -b, -8, -q, -f, and -d
         -t 10 second preamble (default 4) for real tape use
         -v print version number and exit
 
@@ -251,6 +252,16 @@ input(s) with a .mon extension expected input format:
 A single input with a .dsk extension expected to be a 140K disk image.
 
 output must have aiff, aif, wav, wave, or mon extention.
+
+Examples:
+
+        c2t hello hello.mon
+        c2t -p hello.mon print.mon foo,800 | pbcopy
+        c2t -2f moon.patrol,801 moon.patrol.aif
+        c2t -2 hello,300 hello.aiff
+        c2t -1 hello.mon hello.wav
+        c2t -2 thief,801 thief.obj,3ffd thief.pic,2000 thief.aif
+        c2t foo.dsk foo.wav
 ```
 
 ## Examples
@@ -350,7 +361,9 @@ Input:  Binary game without DOS header that should be loaded at $801 as fast
 
 Command:
 
-c2t -8c moon.patrol,801 moon.patrol.aif
+c2t -8bc moon.patrol,801 moon.patrol.aif
+
+Output:
 
 Reading moon.patrol, type binary, segment 1, start: 0x0801, length: 18460
 
@@ -372,7 +385,9 @@ Input:  Binary game without DOS header that should be loaded at $800 as fast
 
 Command:
 
-c2t -8c super_puckman,800 super_puckman.wav
+c2t -8bc super_puckman,800 super_puckman.wav
+
+Output:
 
 Reading super_puckman, type binary, segment 1, start: 0x0800, length: 30719
 
@@ -388,7 +403,11 @@ To load up and run on your Apple II, type:
 ```
 Input:  Three binary files to be loaded at three different addresses.
 
+Command:
+
 c2t -2 foo,801 foo.obj,3ffd foo.pic,2000 foo.aif
+
+Output:
 
 Reading foo, type binary, segment 1, start: 0x0801, length: 91
 Reading foo.obj, type binary, segment 2, start: 0x3FFD, length: 18947
