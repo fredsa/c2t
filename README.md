@@ -84,10 +84,12 @@ make macos
 
 ### Windows
 
-First install MinGW (<https://osdn.net/projects/mingw/>), then type from the root of this distribution:
+First install [mingw-w64](https://www.mingw-w64.org/). (You can also use MinGW, formerly available from <https://osdn.net/projects/mingw/>. Just update the path to `PATH=C:\MinGW\bin;%PATH%`.)
+
+Then type from the root of this distribution:
 
 ```
-PATH=C:\MinGW\bin;%PATH%
+PATH=C:\mingw64\bin;%PATH%
 gcc -Wall -Wno-unused-value -Wno-unused-function -Wno-misleading-indentation -I. -O3 -static -o c2t c2t.c
 ```
 
